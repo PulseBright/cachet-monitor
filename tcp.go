@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net"
 	"time"
+	"strconv"
 )
 
 // Investigating template
@@ -31,7 +32,6 @@ type TCPMonitor struct {
 
 // CheckTCPPortAlive func
 func CheckTCPPortAlive(ip, port int64, timeout int64) (bool, error) {
-
 	conn, err := net.DialTimeout("tcp", net.JoinHostPort(ip, strconv.Itoa(port)), time.Duration(timeout)*time.Second)
 	if conn != nil {
 		defer conn.Close()
@@ -46,7 +46,7 @@ func CheckTCPPortAlive(ip, port int64, timeout int64) (bool, error) {
 
 // test if it available
 func (m *TCPMonitor) test() bool {
-	if alive, e := CheckTCPPortAlive(m.Target, m.Port, int64(m.Timeout)); alive {
+	if alive, e := CheckTCPPortAlive(m.Target, int64(m.Port), int64(m.Timeout)); alive {
 		return true
 	} else {
 		m.lastFailReason = fmt.Sprintf("TCP check failed: %v", e)
