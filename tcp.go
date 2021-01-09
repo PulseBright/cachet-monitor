@@ -27,7 +27,7 @@ Down seconds: {{ .downSeconds }}s`,
 // TCPMonitor struct
 type TCPMonitor struct {
 	AbstractMonitor `mapstructure:",squash"`
-	Port            string
+	Port            int64
 }
 
 // CheckTCPPortAlive func
@@ -66,10 +66,6 @@ func (m *TCPMonitor) Validate() []string {
 
 	if m.Target == "" {
 		errs = append(errs, "Target is required")
-	}
-
-	if m.Port == "" {
-		errs = append(errs, "Port is required")
 	}
 
 	return errs
