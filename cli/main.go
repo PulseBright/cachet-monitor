@@ -14,7 +14,7 @@ import (
 	docopt "github.com/docopt/docopt-go"
 	cachet "github.com/JustinBack/cachet-monitor"
 	"github.com/mitchellh/mapstructure"
-	"github.com/sirupsen/logrus"
+	"github.com/Sirupsen/logrus"
 	"gopkg.in/yaml.v2"
 )
 
@@ -59,9 +59,6 @@ func main() {
 		cfg.Immediate = immediate.(bool)
 	}
 
-	if restarted, ok := arguments["--restarted"]; ok {
-		cfg.Restarted = restarted.(bool)
-	}
 
 	if name := arguments["--name"]; name != nil {
 		cfg.SystemName = name.(string)
