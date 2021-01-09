@@ -32,7 +32,7 @@ type TCPMonitor struct {
 
 // CheckTCPPortAlive func
 func CheckTCPPortAlive(ip string, port int64, timeout int64) (bool, error) {
-	conn, err := net.DialTimeout("tcp", net.JoinHostPort(ip, strconv.FormatInt(port, 10), time.Duration(timeout)*time.Second)
+	conn, err := net.DialTimeout("tcp", net.JoinHostPort(ip, strconv.FormatInt(port, 10)), time.Duration(timeout)*time.Second)
 	if conn != nil {
 		defer conn.Close()
 	}
