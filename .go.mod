@@ -1,4 +1,4 @@
-module github.com/milkinteractive/cachet-monitor
+module github.com/JustinBack/cachet-monitor
 
 go 1.13
 

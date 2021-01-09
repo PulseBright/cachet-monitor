@@ -12,7 +12,7 @@ import (
 	"sync"
 
 	docopt "github.com/docopt/docopt-go"
-	cachet "github.com/milkinteractive/cachet-monitor"
+	cachet "github.com/JustinBack/cachet-monitor"
 	"github.com/mitchellh/mapstructure"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v2"

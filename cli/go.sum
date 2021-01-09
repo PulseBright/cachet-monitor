@@ -1,3 +1,5 @@
+github.com/JustinBack/cachet-monitor v1.1.0 h1:+VMxJ+dtcJrbTR6fMNEVW9uhbpBPtkvIx/tIr2dfb9Y=
+github.com/JustinBack/cachet-monitor v1.1.0/go.mod h1:2sh27lsr7Tb9Dsgajx9zpLBKfs/48R29ABvmKlxaglE=
 github.com/castawaylabs/cachet-monitor v1.1.0 h1:T8NshhwHjEIbdlWkeRBuYdnU2ktpBnZpwgh6nxrp62w=
 github.com/castawaylabs/cachet-monitor v1.1.0/go.mod h1:FBK1+4+fLd80wd/+U4Zy8YshPlpgWEvup79AoapOZ2E=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
