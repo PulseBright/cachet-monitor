@@ -101,7 +101,7 @@ monitors:
 ```
 docker run inputobject/cachet-monitor:latest \
   -v /your/config.yaml:/etc/cachet-monitor.yaml \
-  -e CONFIG_NAME=/etc/cachet-monitor.yaml \
+  -e CACHET_CONFIG_NAME=/etc/cachet-monitor.yaml \
   -e CACHET_API=http://cachethq/api/v1 \
   -e CACHET_TOKEN=9yMHsdioQosnyVK4iCVR
 ```
