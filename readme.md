@@ -95,6 +95,29 @@ monitors:
     component_id: 4
 ```
 
+## Docker
+
+### Running the image
+```
+docker run inputobject/cachet-monitor:latest \
+  -v /your/config.yaml:/etc/cachet-monitor.yaml \
+  -e CONFIG_NAME=/etc/cachet-monitor.yaml \
+  -e CACHET_API=http://cachethq/api/v1 \
+  -e CACHET_TOKEN=9yMHsdioQosnyVK4iCVR
+```
+
+### Building the image
+There is a makefile included in the repository, you can use it to build the image.
+```sh
+# Run only the build
+make build # image_version=v3.0 image_tag=my-local-build
+
+# Run the build and push
+make all image_version=v3.0
+
+# Create the release packages
+make package
+```
 ## Installation
 
 1. Download binary from [release page](https://github.com/CastawayLabs/cachet-monitor/releases)
@@ -133,7 +156,7 @@ Environment varaibles:
 
 ## Init script
 
-If your system is running systemd (like Debian, Ubuntu 16.04, Fedora, RHEL7, or Archlinux) you can use the provided example file: [example.cachet-monitor.service](https://github.com/CastawayLabs/cachet-monitor/blob/master/example.cachet-monitor.service).
+If your system is running systemd (like Debian, Ubuntu 16.04, Fedora, RHEL7, or Archlinux) you can use the provided example file: [example.cachet-monitor.service](./examples/example.cachet-monitor.service).
 
 1. Simply put it in the right place with `cp example.cachet-monitor.service /etc/systemd/system/cachet-monitor.service`
 2. Then do a `systemctl daemon-reload` in your terminal to update Systemd configuration
@@ -141,7 +164,7 @@ If your system is running systemd (like Debian, Ubuntu 16.04, Fedora, RHEL7, or 
 
 ## Templates
 
-This package makes use of [`text/template`](https://godoc.org/text/template). [Default HTTP template](https://github.com/CastawayLabs/cachet-monitor/blob/master/http.go#L14)
+This package makes use of [`text/template`](https://godoc.org/text/template). [Default HTTP template](./http.go#L14)
 
 The following variables are available:
 
