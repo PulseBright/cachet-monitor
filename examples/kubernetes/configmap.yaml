@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cachethq-monitor-config
+  namespace: cachethq
+data:
+  config: |
+    api:
+      # cachet url
+      #url: https://cachethq/api/v1
+      # cachet api token
+      #token: <some api key from cachethq>
+      #insecure: false
+    # https://golang.org/src/time/format.go#L57
+    date_format: 02/01/2006 15:04:05 MST
+    monitors:
+      - name: google
+        target: https://google.com
+        strict: true
+        method: GET
+        component_id: 1
+        metric_id: 1
+        template:
+          investigating:
+            subject: "{{ .Monitor.Name }} - {{ .SystemName }}"
+            message: "{{ .Monitor.Name }} check **failed** (server time: {{ .now }})\n\n{{ .FailReason }}"
+          fixed:
+            subject: "This issue has been fixed."
+        interval: 1
+        timeout: 1
+        threshold: 80
+        expected_status_code: 200

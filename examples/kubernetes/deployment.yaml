@@ -1,0 +1,51 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: cachethq-monitor
+  name: cachethq-monitor
+  namespace: cachethq
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: cachethq-monitor
+  template:
+    metadata:
+      labels:
+        k8s-app: cachethq-monitor
+    spec:
+      containers:
+        - name: cachethq-monitor
+          image: inputobject/cachet-monitor:v3.0
+          volumeMounts:
+            - mountPath: /mnt/cachet/
+              name: cachethq-config-volume
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 20m
+              memory: 15Mi
+            limits:
+              cpu: 35m
+              memory: 30Mi
+          env:
+            - name: CACHET_CONFIG_NAME
+              value: /mnt/cachet/cachet-monitor.config.yaml
+            - name: CACHET_API
+              value: http://cachethq/api/v1
+            - name: CACHET_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cachethq-monitor
+                  key: API_KEY
+      serviceAccountName: cachethq-sa
+      volumes:
+      - configMap:
+          name: cachethq-monitor-config 
+          items:
+          - key: "config"
+            path: "cachet-monitor.config.yaml"
+        name: cachethq-config-volume
